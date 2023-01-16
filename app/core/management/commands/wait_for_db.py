@@ -7,12 +7,12 @@ from django.core.management.base import BaseCommand
 class Command(BaseCommand):
 
     def handle(self, *args, **options):
-        self.stdout.write('Waiting for database ...')
+        self.stdout.write('Waiting for database...')
         db_up = False
         while db_up is False:
             try:
                 self.check(databases=['default'])
-                dp_up = True
+                db_up = True
             except (Psycopg2OpError, OperationalError):
                 self.stdout.write('Database unava, waiting 1 sec.')
                 time.sleep(1)
